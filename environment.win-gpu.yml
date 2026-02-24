@@ -1,0 +1,21 @@
+name: mvad_clean
+channels:
+  - pytorch
+  - nvidia
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.10
+  - pytorch
+  - torchvision
+  - pytorch-cuda=12.1
+  - numpy<2
+  - scipy
+  - scikit-learn
+  - pyyaml
+  - pillow
+  - tqdm
+  - pip
+  - pip:
+      - pypdf
+

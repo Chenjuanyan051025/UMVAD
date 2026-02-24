@@ -1,0 +1,49 @@
+data:
+  image_root: D:/UMVAD/realiad/realiad_256
+  json_root: D:/UMVAD/realiad/realiad_jsons
+  categories: ["audiojack"]  # smoke test: single category first
+  expected_views: [1, 2, 3, 4, 5]
+  image_size: 256
+  normalize: false
+  drop_incomplete: true
+
+loader:
+  batch_size: 1
+  num_workers: 0   # Windows laptop more stable; if stable, try 2
+  pin_memory: true
+
+model:
+  num_views: 5
+  input_size: 256
+  teacher_pretrained: true
+  student_encoder_pretrained: false
+  use_cb: true
+  fusion_mode: ivc
+  cb_latent_channels: 32
+  voxel_shape: [2, 4, 4]
+  num_fusion_blocks: 1
+  num_heads: 4
+  attn_dropout: 0.0
+
+trainer:
+  device: cuda
+  lr: 1.0e-4
+  weight_decay: 1.0e-4
+  epochs: 5
+  grad_clip_norm: 5.0
+  amp: true
+  save_dir: runs/idif_realiad_4060_smoke
+  log_interval: 20
+  view_dropout_prob: 0.0
+  inputs_are_normalized: false
+  distill_weight: 1.0
+  ib_weight: 1.0
+  ib_kl_weight: 1.0
+  ib_recon_weight: 1.0
+  scale_weights:
+    layer1: 1.0
+    layer2: 1.0
+    layer3: 1.0
+  dtd_root: null   # 推荐改成真实 DTD 路径；null 时使用随机纹理 fallback
+  eval_every: 0    # 先跳过评估（当前 mvad 环境 NumPy bridge 损坏会导致 evaluate 失败）
+  seed: 42
