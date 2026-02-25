@@ -1,6 +1,6 @@
 data:
-  image_root: D:/UMVAD/realiad/realiad_256
-  json_root: D:/UMVAD/realiad/realiad_jsons
+  image_root: /root/data1/dataset/realiad/realiad_256
+  json_root: /root/data1/dataset/realiad/realiad_jsons
   categories: null
   expected_views: [1, 2, 3, 4, 5]
   image_size: 256
@@ -29,7 +29,7 @@ trainer:
   device: cuda
   lr: 1.0e-4
   weight_decay: 1.0e-4
-  epochs: 10          # 标准结构短程测试；不是最终对齐训练轮数
+  epochs: 10          # standard-structure short run on A6000
   grad_clip_norm: 5.0
   amp: true
   save_dir: runs/idif_realiad_a6000_standard_test
@@ -47,4 +47,3 @@ trainer:
   dtd_root: null      # TODO: set real DTD path for paper-aligned pseudo anomalies
   eval_every: 10      # only evaluate once at end to save time
   seed: 42
-

@@ -189,6 +189,7 @@ class RealIADMultiViewDataset(Dataset):
         v_valid: List[bool] = []
         v_has_mask: List[bool] = []
         v_paths: List[str] = []
+        v_mask_paths: List[str] = []
 
         for view_id in self.expected_views:
             entry = sample.views.get(view_id)
@@ -198,6 +199,7 @@ class RealIADMultiViewDataset(Dataset):
                 v_valid.append(False)
                 v_has_mask.append(False)
                 v_paths.append("")
+                v_mask_paths.append("")
             else:
                 x = self._load_image(entry.image_path)
                 if self.include_masks and entry.mask_path is not None and entry.mask_path.exists():
@@ -209,6 +211,7 @@ class RealIADMultiViewDataset(Dataset):
                 v_valid.append(True)
                 v_has_mask.append(has_mask)
                 v_paths.append(str(entry.image_path))
+                v_mask_paths.append(str(entry.mask_path) if entry.mask_path is not None else "")
             v_images.append(x)
             v_masks.append(m)
 
@@ -242,6 +245,7 @@ class RealIADMultiViewDataset(Dataset):
         }
         if self.return_paths:
             out["image_paths"] = v_paths
+            out["mask_paths"] = v_mask_paths
         return out
 
 

@@ -1,6 +1,6 @@
 data:
-  image_root: D:/UMVAD/realiad/realiad_256
-  json_root: D:/UMVAD/realiad/realiad_jsons
+  image_root: /root/data1/dataset/realiad/realiad_256
+  json_root: /root/data1/dataset/realiad/realiad_jsons
   categories: ["audiojack"]  # smoke test: single category first
   expected_views: [1, 2, 3, 4, 5]
   image_size: 256
@@ -44,6 +44,6 @@ trainer:
     layer1: 1.0
     layer2: 1.0
     layer3: 1.0
-  dtd_root: null   # 推荐改成真实 DTD 路径；null 时使用随机纹理 fallback
-  eval_every: 0    # 先跳过评估（当前 mvad 环境 NumPy bridge 损坏会导致 evaluate 失败）
+  dtd_root: null   # set real DTD path for paper-aligned pseudo anomalies (optional)
+  eval_every: 0    # disable in-training eval for quick smoke run
   seed: 42

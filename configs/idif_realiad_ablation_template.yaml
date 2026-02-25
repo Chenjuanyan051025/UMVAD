@@ -5,8 +5,8 @@ notes:
     should be added by configuring model variants and/or separate training runs.
 
 data:
-  image_root: D:/UMVAD/realiad/realiad_256
-  json_root: D:/UMVAD/realiad/realiad_jsons
+  image_root: /root/data1/dataset/realiad/realiad_256
+  json_root: /root/data1/dataset/realiad/realiad_jsons
   categories: null
   expected_views: [1, 2, 3, 4, 5]
   image_size: 256
